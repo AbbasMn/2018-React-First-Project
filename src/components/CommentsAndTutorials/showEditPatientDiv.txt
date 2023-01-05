@@ -1,0 +1,98 @@
+addDivEdit = parameters =>  {
+
+    window.confirm("aaaaaaaa", parameters.patient.name + " "+parameters.divParent);
+
+    console.log("aaaaaaaaaaaaaaa","divEdit-"+parameters.patient.id.toString());
+
+    //if (document.getElementById("#divEdit-"+patient.id.toString()) !==null)    
+
+    var child1 = <div id={"divEdit-"+parameters.patient.id}   class="divEdit" style={{ display: "none"}}>
+    <span style={{ display: "inline-block", width: "21%" }}>
+      <input
+        type="text"
+        class="form-control"
+        id="inputEditName"
+        value={parameters.patient.name}
+      ></input>
+    </span>
+
+    <span style={{ display: "inline-block", width: "21%" }}>
+      {/* New Family:  */}
+      <input
+        type="text"
+        class="form-control"
+        id="inputEditFamily"
+        value={parameters.patient.family}
+      ></input>
+    </span>
+
+    <span style={{ display: "inline-block", width: "21%" }}>
+      {/* New Birth Day:  */}
+      <input
+        type="date"
+        class="form-control"
+        id="inputEditBirthDate"
+        value={parameters.patient.birthDate}
+      ></input>
+    </span>
+    <span style={{ display: "inline-block", width: "21%" }}>
+      {/* New Physician: */}
+      <input
+        type="text"
+        class="form-control"
+        id="inputEditPhysician"
+        value={parameters.patient.physician}
+      ></input>
+    </span>
+
+    <button
+      id="btnEditSave"
+      style={{ display: "inline-block" }}
+      className="btn btn-warning btn-sm m-2"
+      onClick={() => {
+        if (window.confirm("Are you sure to Edit this Patient?"))
+          this.sendEditedPatient(parameters.patient);
+      }}
+    >
+      Save
+    </button>
+  </div>;
+
+    var parentNode = document.getElementById("#"+parameters.divParent);
+    //var childNode = document.createTextNode(child); 
+    //var p = document.createElement("<p>");
+    //parentNode.appendChild(p); 
+    
+    var div = '<div>Hello</div>';
+    document.getElementById(parentNode).innerHTML += div;
+
+    //document.getElementById(childNode).style.display="inline";
+  }
+
+  removeDivEdit = (parent, child) => {
+    var parentNode = document.createElement(parent);
+    //var childNode = document.createTextNode(child);   
+  }
+
+
+////////////////////////////////
+recievAndUpdateEditedPatient = parameters => {
+    //console.log('parameter: ', parameter.initialvalue);
+    this.setState({
+      patient:
+        ((this.props.patient.name = parameters.name),
+        (this.props.patient.family = parameters.family),
+        (this.props.patient.birthDate = parameters.birthDate),
+        (this.props.patient.physician = parameters.physician))
+    });
+  };
+
+  sendEditedPatient = () => {
+    let name = document.getElementById("spanEditNmae").value;
+    let family = document.getElementById("spanEditFamily").value;
+    let biirthDate = document.getElementById("spanEditBirthDate").value;
+    let phisician = document.getElementById("spanEditPhysician").value;
+
+    this.recievAndUpdateEditedPatient({ name, family, biirthDate, phisician });
+  };
+  

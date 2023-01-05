@@ -1,0 +1,44 @@
+
+Yes, we can use jQuery in ReactJs. Here I will tell how we can use it using npm.
+
+step 1: Go to your project folder where the package.json file is present via using terminal using cd command.
+
+step 2: Write the following command to install jquery using npm : npm install jquery --save
+
+step 3: Now, import $ from jquery into your jsx file where you need to use.
+
+Example:
+
+write the below in index.jsx
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import $ from 'jquery';
+
+
+//   react code here
+
+
+$("button").click(function(){
+    $.get("demo_test.asp", function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+    });
+});
+
+// react code here
+write the below in index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="index.jsx"></script>
+    <!-- other scripting files -->
+</head>
+<body>
+    <!-- other useful tags -->
+    <div id="div1">
+        <h2>Let jQuery AJAX Change This Text</h2>
+    </div>
+    <button>Get External Content</button>
+</body>
+</html>
